@@ -1,0 +1,63 @@
+<!-- layout perfectly designed to fit google chrome 1920 x 1080 screen-->
+<html>
+	<head>
+		<title>Timer</title>
+		<link type="text/css" rel="stylesheet" href="stylesheet.css" />
+	</head>
+	<body background="surface_background_plain_black_50697_1280x720.jpg" >
+		<div id = "header"></div> <!-- division for top layout design -->
+		<p id="deadlinemessage">Enter the deadline for the start of booking to the new year party ...<p>
+		<form><!-- form for taking input -->
+			<div class = "forms">
+				Year	:<br><input id ="year"		type = "number" min = "2016" max = "2099" value="0"><br>
+			</div>
+			<div class = "forms">
+				Month	:<br><input id ="month"		type = "number" min = "1" 	 max = "12" value="0">  <br>
+			</div>
+			<div class = "forms">
+				Date	:<br><input id ="date"		type = "number" min = "1" 	 max = "31" value="0">  <br>
+			</div>
+			<div class = "forms">
+				Hour	:<br><input id ="hour"		type = "number" min = "0" 	 max = "23" value="0">  <br>
+			</div>
+			<div class = "forms">
+				Minutes	:<br><input id ="minutes"	type = "number" min = "0" 	 max = "60" value="0">  <br>
+			</div>
+			<div class = "forms">
+				Seconds	:<br><input id ="seconds"	type = "number" min = "0" 	 max = "60" value="0">  <br>
+			</div>
+		</form>
+		<p id = "eventmessage">The booking starts in </p>
+		<div class = "timer"><!-- division for displaying the timer -->
+			<p id = "years">0</p>
+			<p>Years</p>
+		</div>
+		<div class = "timer">
+			<p id = "months">0</p>
+			<p>Months</p>
+		</div>
+		<div class = "timer">
+			<p id = "days">0</p>
+			<p>Days</p>
+		</div>
+		<div class = "timer">
+			<p id = "hours">0</p>
+			<p>Hours</p>
+		</div>
+		<div class = "timer">
+			<p id = "mins">0</p>
+			<p>Minutes</p>
+		</div>
+		<div class = "timer">
+			<p id = "secs">0</p>
+			<p>Seconds</p>
+		</div>
+		<br/>
+		<button class = "datecomp" onclick="verify()">Start !!</button> <!-- buttons for start, stop and reset -->
+		<button class = "datecomp" onclick="stop()">Stop !!</button>
+		<button class = "datecomp" onclick="reset()">Reset !!</button>
+		<script type="text/javascript" src="javascript.js">
+		</script>
+		<div id = "footer"></div><!-- bottom layout design -->
+	</body>
+</html>

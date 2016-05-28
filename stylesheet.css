@@ -1,0 +1,113 @@
+#header{ /* for the top layout design*/
+	position: relative;
+	top: -10px;
+	left: -10px;
+	height: 10%;
+	width: 100.65%;
+	border-top-left-radius: 40px;
+	border-top-right-radius: 40px;
+	background-color: #F44336;
+	border: 3px solid #B71C1C
+}
+
+#deadlinemessage{ /*message for asking input*/
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 20px;
+	font-family: cursive;
+	text-align: center;
+	position: relative;
+	top: -20px;
+}
+
+form{ /*form to take input*/
+	color: #ffffff;
+	font-family: cursive;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+input{/*input text fields*/
+	margin: 10px;
+	width: 200px;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: cursive;
+	border-radius: 5px;
+	text-align: center;
+}
+
+form>div{/*divisions holding forms*/
+	height: 70px;
+	width: 250px;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 7px 7px 7px #607D8B;
+	display: inline-block;
+	position: relative;
+	left: 10%;
+	top: -30px;
+	background-color: #3F51B5;
+}
+
+#eventmessage{/*message shown during event and after event ends*/
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 80px;
+	font-family:  HMS Gilbert , cursive;
+	text-align: center;
+	position: relative;
+}
+
+.timer{/*used to run the timer*/
+	height: 120px;
+	width: 120px;
+	border: 3px solid #B71C1C;
+	display: inline-block;
+	margin: 3px;
+	text-align: center;
+	border-radius: 50%;
+	position: relative;
+	top: 0px;
+	left: 29%;
+	background-color: #F44336;
+	box-shadow: -7px -3px 3px #E57373; 
+}
+
+body>div>p{/*texts inside timer*/
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: cursive;
+}
+
+.datecomp{/*buttons for start,stop and reset*/
+	display: inline-block;
+	height: 40px;
+	width: 100px;
+	text-align: center;
+	margin: 5px 3px;
+	position: relative;
+	top: 50px;
+	left: 35%;
+	margin: 0px 50px 0px 20px;
+	border-radius: 5px;
+	background-color: #3F51B5;
+	border: 0;
+	color: white;
+	box-shadow: 3px 3px 3px #607D8B;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#footer{/*for the bottom layout design*/
+	position: relative;
+	top: 18.39%;
+	left: -10px;
+	height: 10%;
+	width: 100.65%;
+	border-bottom-left-radius: 40px;
+	border-bottom-right-radius: 40px;
+	background-color: #F44336;
+	border: 3px solid #B71C1C;
+}
