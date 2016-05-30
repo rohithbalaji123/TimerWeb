@@ -1,4 +1,5 @@
 var myVar;	//Variable used for assigning setInterval function
+var cy,cmo,cd,ch,cmi,cs;
 var ed = new Date();  //ed stands for end date i.e. deadline
 function verify(){		//funtion to verify range of input values
 	var temp = 0;
@@ -39,17 +40,17 @@ function verify(){		//funtion to verify range of input values
 function input(){ //function to save the entered values
 	ed.setFullYear	(document.getElementById("year").value);
 	ed.setMonth		(document.getElementById("month").value);
+	ed.setMonth(ed.getMonth()-1);
 	ed.setDate		(document.getElementById("date").value);
 	ed.setHours		(document.getElementById("hour").value);
 	ed.setMinutes	(document.getElementById("minutes").value);
 	ed.setSeconds	(document.getElementById("seconds").value);
 	ed.setMilliseconds(0);
-	if( ed < new Date()) {
+	if( ed < new Date() ) {
 		alert("Invalid Input ... Retry ...");
 	}
 	else{
-		alert("Deadline is on "+ed.getDate()+"/"+ed.getMonth()+"/"+ed.getFullYear()+"  "+ed.getHours()+":"+ed.getMinutes()+":"+ed.getSeconds());
-		ed.setMonth(ed.getMonth()-1);
+		alert("Deadline is on "+ed.getDate()+"/"+(ed.getMonth()+1)+"/"+ed.getFullYear()+"  "+ed.getHours()+":"+ed.getMinutes()+":"+ed.getSeconds());
 		setinterval();
 	}
 }
@@ -60,42 +61,47 @@ function myTime(){ //function for timer
 	var d = new Date(); //variable for current time
 	if( ed.getSeconds() - d.getSeconds() < 0) {
 		document.getElementById("secs").innerHTML = ed.getSeconds() - d.getSeconds() + 60;
-		d.setMinutes(d.getMinutes() + 1);
+		cmi = d.getMinutes() + 1;
 	}
 	else {
 		document.getElementById("secs").innerHTML = ed.getSeconds() - d.getSeconds();
+		cmi = d.getMinutes();
 	}
-	if( ed.getMinutes() - d.getMinutes() < 0){
-		document.getElementById("mins").innerHTML = ed.getMinutes() - d.getMinutes() + 60;
-		d.setHours(d.getHours() + 1);
+	if( ed.getMinutes() - cmi < 0){
+		document.getElementById("mins").innerHTML = ed.getMinutes() - cmi + 60;
+		ch = d.getHours() + 1;
 	}
 	else {
-		document.getElementById("mins").innerHTML = ed.getMinutes() - d.getMinutes();
+		document.getElementById("mins").innerHTML = ed.getMinutes() - cmi;
+		ch = d.getHours();
 	}
 	if( ed.getHours() - d.getHours() < 0) {
-		document.getElementById("hours").innerHTML = ed.getHours() - d.getHours() + 24;
-		d.setDate(d.getDate() + 1);
+		document.getElementById("hours").innerHTML = ed.getHours() - ch + 24;
+		cd = d.getDate() + 1;
 	}
 	else {
-		document.getElementById("hours").innerHTML = ed.getHours() - d.getHours();
+		document.getElementById("hours").innerHTML = ed.getHours() - ch;
+		cd = d.getDate();
 	}
-	if( ed.getDate() - d.getDate() < 0) {
-		document.getElementById("days").innerHTML = ed.getDate() - d.getDate() + noOfDays(d.getMonth());
-		d.setMonth(d.getMonth() + 1);
+	if( ed.getDate() - cd < 0) {
+		document.getElementById("days").innerHTML = ed.getDate() - cd + noOfDays(d.getMonth());
+		cmo = d.getMonth() + 1;
 	}
 	else{
-		document.getElementById("days").innerHTML = ed.getDate() - d.getDate();
+		document.getElementById("days").innerHTML = ed.getDate() - cd;
+		cmo = d.getMonth();
 	}
 	if( ed.getMonth() - d.getMonth() < 0) {
-		document.getElementById("months").innerHTML = ed.getMonth() - d.getMonth() + 12;
-		d.setFullYear(d.getFullYear() + 1);
+		document.getElementById("months").innerHTML = ed.getMonth() - cmo + 12;
+		cy = d.getFullYear() + 1;
 	}
 	else{
-		document.getElementById("months").innerHTML = ed.getMonth() - d.getMonth();
+		document.getElementById("months").innerHTML = ed.getMonth() - cmo;
+		cy = d.getFullYear();
 	}
-	document.getElementById("years").innerHTML = ed.getFullYear() - d.getFullYear();
-	if( (ed.getFullYear() === d.getFullYear()) && (ed.getMonth() === d.getMonth()) && (ed.getDate() === d.getDate()) && 
-		(ed.getHours() === d.getHours()) && (ed.getMinutes() === d.getMinutes()) && (ed.getSeconds() === d.getSeconds())){
+	document.getElementById("years").innerHTML = ed.getFullYear() - cy;
+	if( (ed.getFullYear() <= d.getFullYear()) && (ed.getMonth() <= d.getMonth()) && (ed.getDate() <= d.getDate()) && 
+		(ed.getHours() <= d.getHours()) && (ed.getMinutes() <= d.getMinutes()) && (ed.getSeconds() <= d.getSeconds())){
 		stop();
 		eventend();
 	}
@@ -126,6 +132,7 @@ function reset(){ //function to reset values once reset button is pressed
 	document.getElementById("secs").innerHTML = 0;
 	document.getElementById("mins").innerHTML = 0;
 	document.getElementById("eventmessage").innerHTML = "The booking starts in";
+	stop();
 }
 function eventend() { //function to change event message when event ends
 	document.getElementById("eventmessage").innerHTML = "!!! The Booking Has Started !!!";
