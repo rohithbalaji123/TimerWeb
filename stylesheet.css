@@ -45,9 +45,10 @@ form>div{/*divisions holding forms*/
 	box-shadow: 7px 7px 7px #607D8B;
 	display: inline-block;
 	position: relative;
-	left: 10%;
+	left: 35%;
 	top: -30px;
 	background-color: #3F51B5;
+	margin: 10px 20px 0px 0px;
 }
 
 #eventmessage{/*message shown during event and after event ends*/

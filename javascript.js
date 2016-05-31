@@ -1,53 +1,38 @@
 var myVar;	//Variable used for assigning setInterval function
-var cy,cmo,cd,ch,cmi,cs;
-var ed = new Date();  //ed stands for end date i.e. deadline
-function verify(){		//funtion to verify range of input values
+var cy,cmo,cd,ch,cmi,cs;	//Variables used for current parameters of date and time
+var edate,dinput;  //end date and input in date stands for end date i.e. deadline
+var ey,emo,eda,eh,emi,es,ems; //end date and time parameters
+var etime; //end time input
+var ed = new Date(); //date object for end date
+function verify(){		//funtion to verify input values
+	document.getElementById("eventmessage").innerHTML = "The booking starts in";
 	var temp = 0;
-	if(document.getElementById("year").value < 2016 || document.getElementById("year").value > 2099 || 
-		document.getElementById("year").value === NaN){
-		alert("Year range should be between 2016 and 2099 ...");
-		temp++;
-	}
-	if(document.getElementById("month").value < 1 || document.getElementById("month").value > 12 || 
-		document.getElementById("month").value === NaN){
-		alert("Month range should be between 1 and 12 ...");
-		temp++;
-	}
-	if(document.getElementById("date").value < 1 || document.getElementById("date").value > noOfDays(document.getElementById("month").value-1) ||
-		document.getElementById("date").value === NaN){
-		alert("Date range should be between 1 and "+noOfDays(document.getElementById("month").value-1)+" ...");
-		temp++;
-	} //noOfDays function to check range of date for corresponding months
-	if(document.getElementById("hour").value < 0 || document.getElementById("hour").value > 23 ||
-		document.getElementById("hour").value === NaN){
-		alert("Hour range should be between 0 and 23 ...");
-		temp++;
-	}
-	if(document.getElementById("minutes").value < 0 || document.getElementById("minutes").value > 59 ||
-		document.getElementById("year").value === NaN){
-		alert("Minute range should be between 0 and 59 ...");
-		temp++;
-	}
-	if(document.getElementById("seconds").value < 0 || document.getElementById("seconds").value > 59 ||
-		document.getElementById("seconds").value === NaN){
-		alert("Seconds range should be between 0 and 59 ...");
-		temp++;
-	}
-	if(!temp){
+	dinput = document.getElementById("dates").value;
+	etime = document.getElementById("times").value;
+	edate = new Date(dinput);
+	var timeArray = etime.split(":");
+	eh = parseInt(timeArray[0]);
+	emi = parseInt(timeArray[1]);
+	if( !!edate.valueOf() && !isNaN(eh) && !isNaN(emi) ){
 		input();
+	}
+	else {
+		alert("Invalid input ..." );
 	}
 }
 function input(){ //function to save the entered values
-	ed.setFullYear	(document.getElementById("year").value);
-	ed.setMonth		(document.getElementById("month").value);
-	ed.setMonth(ed.getMonth()-1);
-	ed.setDate		(document.getElementById("date").value);
-	ed.setHours		(document.getElementById("hour").value);
-	ed.setMinutes	(document.getElementById("minutes").value);
-	ed.setSeconds	(document.getElementById("seconds").value);
-	ed.setMilliseconds(0);
+	ey = edate.getFullYear();
+	emo = edate.getMonth();
+	eda = edate.getDate();
+	var timeArray = etime.split(":");
+	eh = parseInt(timeArray[0]);
+	emi = parseInt(timeArray[1]);
+	es = 0;
+	ems = 0;
+	var etemp = new Date(ey,emo,eda,eh,emi,es,ems);
+	ed = etemp;
 	if( ed < new Date() ) {
-		alert("Invalid Input ... Retry ...");
+		alert("Invalid Input ... values lesser than current time ...");
 	}
 	else{
 		alert("Deadline is on "+ed.getDate()+"/"+(ed.getMonth()+1)+"/"+ed.getFullYear()+"  "+ed.getHours()+":"+ed.getMinutes()+":"+ed.getSeconds());
@@ -102,7 +87,7 @@ function myTime(){ //function for timer
 	document.getElementById("years").innerHTML = ed.getFullYear() - cy;
 	if( (ed.getFullYear() <= d.getFullYear()) && (ed.getMonth() <= d.getMonth()) && (ed.getDate() <= d.getDate()) && 
 		(ed.getHours() <= d.getHours()) && (ed.getMinutes() <= d.getMinutes()) && (ed.getSeconds() <= d.getSeconds())){
-		stop();
+		clearInterval(myVar);
 		eventend();
 	}
 }
@@ -118,12 +103,8 @@ function stop() { //function to invoke clearInterval()
 	clearInterval(myVar);
 }
 function reset(){ //function to reset values once reset button is pressed
-	document.getElementById("year").value = 0;
-	document.getElementById("month").value = 0;
-	document.getElementById("date").value = 0;
-	document.getElementById("hour").value = 0;
-	document.getElementById("minutes").value = 0;
-	document.getElementById("seconds").value = 0;
+	document.getElementById("dates").value = "----------";
+	document.getElementById("times").value = "--:--";
 	clearInterval(myVar);
 	document.getElementById("years").innerHTML = 0;
 	document.getElementById("months").innerHTML = 0;
